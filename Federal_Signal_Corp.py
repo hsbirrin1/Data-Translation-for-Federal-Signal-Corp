@@ -1,4 +1,3 @@
-
 import requests 
 import pandas as pd 
 from datetime import datetime, timedelta
@@ -111,10 +110,23 @@ df['roa'] = df['net_income'] / df['total_assets']
 
 
 # Step 6: Print Results
-print(df[['end', 'revenue', 'net_income', 'cost_of_revenue', 'gross_profit', 
-          'gross_profit_margin', 'net_profit_margin', 
-          'current_assets', 'current_liabilities', 'inventory',
-          'current_ratio', 'quick_ratio', 'debt_to_equity', 'roe', 'roa']])
+# Set display options to show all columns
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 200)
+
+# Select and rename columns
+output_df = df[['end', 'revenue', 'net_income', 'cost_of_revenue', 'gross_profit', 
+                'gross_profit_margin', 'net_profit_margin', 
+                'current_assets', 'current_liabilities', 'inventory',
+                'current_ratio', 'quick_ratio', 'debt_to_equity', 'roe', 'roa']].copy()
+
+output_df.columns = [
+    'Year-End', 'Revenue', 'Net Income', 'Cost of Revenue', 'Gross Profit',
+    'Gross Margin', 'Net Margin', 'Current Assets', 'Current Liabilities', 'Inventory',
+    'Current Ratio', 'Quick Ratio', 'Debt/Equity', 'ROE', 'ROA'
+]
+
+print(output_df)
 
 # Step 7: Visualize Key Financial Ratios
 
